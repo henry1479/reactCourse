@@ -1,15 +1,15 @@
 
 import './App.css';
+import Message from './Message.js'
 
-function App(props) {
-  // paragraph with a text of a message
-        // name changes depending of props.name or props.lastName
-        // CSS changes depending of contsisting of props.name 
-        // adding the classes - 'message' or 'message-red'
+
+function App() {
+  const myName = 'Kostya';
+  const myLastName = 'Tsypa';
   return (
     <div className="App">
       <header className="App-header">
-        <p className={`${props.name ? 'message' : 'message-red'}`}>{props.name? props.name : props.lastName} begin to learn React!</p>
+        <Message lastName={myLastName} />
       </header>
     </div>
   );

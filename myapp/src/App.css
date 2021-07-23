@@ -11,7 +11,7 @@
 
 .App-header {
   background-color: #690b85;
-  min-height: 100vh;
+  min-height: 40vh;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -20,26 +20,34 @@
   color: white;
 }
 
+.App-main {
+  display: flex;
+}
+
 .App-link {
   color: #c5e9f3;
 }
 
 /* MessageLIst */
 
+
+.message-list {
+  border-left: 2px solid #2b474f;
+  width: 100%;
+  background: #b599f0
+}
+
+
 .message {
-  color: #61dafb;
+  color: #2b474f;
   font-weight: 700;
   font-size: 1.3em;
   letter-spacing: 0.25em;
+ 
 
 }
 
-.message-red {
-  color: #e03c3c;
-  font-weight: 300;
-  font-size: 0.3em;
-  letter-spacing: 0.25em;
-}
+
 
 /* Form */
 .message-form {

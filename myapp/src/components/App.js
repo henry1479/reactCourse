@@ -19,7 +19,7 @@ import {
  });
  
 
-
+const myLogin = /^(Kostya)$/i;
 function App() {
 
   // init state and function-setter
@@ -28,30 +28,27 @@ function App() {
 
   //function handler onSubmit Form
   //it get argument - object
-  const sendMessage = (object) => {
+  const sendMessage = (message) => {
     // array is the last value of the state
-    let array = messages;
+    let messageArray = messages;
+    // removing equal messages
+    messageArray = messageArray.filter(el => el.author !== message.author || el.text !== message.text);
     // adding a copy of the object in the array
-    object = {...object}
-    array.push(object)
+    messageArray.push({...message});
     // set the state
-    setMessages([...array]);
-  }
+    setMessages([...messageArray]);
+  } 
 
   //send message accepting getting message 
   useEffect(() => {
     //get a last object in the state
-    let obj = messages[messages.length - 1];
-    let array = messages;
-    //my login
-    const myLog = /^(Kostya)$/i;
-    // if the object do not exist to create new object 
-    obj = (obj === undefined || obj === null) ? { author: ' ', message: '' } : obj;
+    let lastMessage = messages[messages.length - 1];
+    let messageArray = messages;
     //if I send the meesage I will get message about ok!
-    if (myLog.test(obj.author)) {
-      const responseMessage = { author: 'robot', text: `Dear ${obj.author}, your message is sent!` }
-      array.push(responseMessage)
-      const messageIntervalId = setTimeout(() => { setMessages([...array]) }, 3000);
+    if (lastMessage&&myLogin.test(lastMessage.author)) {
+      const responseMessage = { author: 'robot', text: `Dear ${lastMessage.author}, your message is sent!` }
+      messageArray.push(responseMessage)
+      const messageIntervalId = setTimeout(() => { setMessages([...messageArray]) }, 3000);
 
     }
   }, [messages])

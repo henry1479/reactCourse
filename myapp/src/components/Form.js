@@ -1,4 +1,4 @@
-import { useState, useRef } from 'react'
+import { useState, useRef, useEffect } from 'react'
 import { makeStyles,createStyles } from '@material-ui/core/styles';
 import { FormGroup, InputLabel, Input } from '@material-ui/core'
 
@@ -8,8 +8,7 @@ import { FormGroup, InputLabel, Input } from '@material-ui/core'
 // contain 2 inputs and button with handler of events
 
 
-  
-
+//   styles for components
 const useStyles = makeStyles((theme)=> createStyles({
    form: {
       width: '60%',
@@ -46,8 +45,10 @@ const useStyles = makeStyles((theme)=> createStyles({
 function Form(props) {
    // object for new message
    const [messageObject, setMessageObject] = useState({});
-   const inputAuthor = useRef(null);
+   // refs for inputs
+ 
    const inputText = useRef(null);
+   //use styles for componenets
    const classes = useStyles();
    
    
@@ -55,42 +56,29 @@ function Form(props) {
    //get value of inputs
    // make they propreties of objectMessage
    const handleChange = (event) => {
-
-      let object = messageObject;
-      const target = event.target;
-      const name = target.name;
-      const value = target.value;
-
-      if (name === 'author') {
-         if (value === '') {
-            object.author = ''
-         } else {
-            object.author = value;
-         }
-            
-      } else {
-         object.text = value;
-      }
-
-      setMessageObject(object);
+      let message = {};
+      message.author = 'Kostya';
+      message.text = inputText.current.value;
+      setMessageObject(message);
    }
 
-   //clean inputs
+
+   //clean input
+   // make fokus on textField
    const cleanField = () => {
-      inputAuthor.current.value = '';
       inputText.current.value = '';
       inputText.current?.focus();
-   }
+      
+      
+   };
 
-   
+   // render elements from the framework 'material-ui'
 
    return (
       <FormGroup action="#" className={classes.form}>
-         <InputLabel htmlFor="author">enter your name</InputLabel>
-         <Input inputRef={inputAuthor} type="text" variant="outlined" name="author" onChange={handleChange} className={classes.input}  disableUnderline={true}/>
          <InputLabel htmlFor="message">write your message</InputLabel>
-         <Input inputRef={inputText} type="text" name="message" onChange={handleChange} className={classes.input}  disableUnderline={true} autoFocus={true}/>
-         <Input type="submit" value="Send" className={classes.button} disableUnderline={true} onClick={(event) => { event.preventDefault(); props.handleChange(messageObject); cleanField();}} />
+         <Input inputRef={inputText} type="text" name="message" onChange ={handleChange} className={classes.input}  disableUnderline={true} autoFocus={true}/>
+         <Input type="submit" value="Send" className={classes.button} disableUnderline={true} onClick={(event) => {event.preventDefault(); props.handleChange(messageObject);cleanField()}} />
       </FormGroup>
    )
 }

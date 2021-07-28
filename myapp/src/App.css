@@ -8,7 +8,6 @@
 }
 
 
-
 .App-header {
   background-color: #690b85;
   min-height: 100vh;
@@ -24,7 +23,7 @@
   color: #c5e9f3;
 }
 
-/* MessageLIst */
+
 
 .message {
   color: #61dafb;
@@ -39,7 +38,6 @@
   font-weight: 300;
   font-size: 0.3em;
   letter-spacing: 0.25em;
-}
 
 /* Form */
 .message-form {
@@ -71,4 +69,5 @@
   width: 30%;
   align-self: center;
 }
+
 

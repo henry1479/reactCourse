@@ -9,7 +9,7 @@ function MessageList(props) {
     <div className="message-list">
 
       {
-      props?.data?.map((message, number) =>{return <p key={number.toString()} className="message"> Author: {message.author} Text: {message.text}</p>;})
+      props.data?.messages?.map((message, number) =>{return <p key={number.toString()} className="message"> Author: {message.author} Text: {message.text}</p>;})
       }
 
     </div>

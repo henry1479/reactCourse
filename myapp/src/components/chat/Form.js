@@ -11,11 +11,12 @@ import { FormGroup, InputLabel, Input } from '@material-ui/core'
 //   styles for components
 const useStyles = makeStyles((theme)=> createStyles({
    form: {
-      width: '60%',
+      width: '90%',
       display: 'flex',
       flexDirection: 'column',
       justifyContent: 'space-evenly',
       height: '300px',
+      margin: '0 auto',
       
    },
    

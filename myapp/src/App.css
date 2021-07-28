@@ -7,11 +7,6 @@
   pointer-events: none;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
 
 .App-header {
   background-color: #690b85;
@@ -28,14 +23,7 @@
   color: #c5e9f3;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
+
 
 .message {
   color: #61dafb;
@@ -50,4 +38,36 @@
   font-weight: 300;
   font-size: 0.3em;
   letter-spacing: 0.25em;
+
+/* Form */
+.message-form {
+  width: 60%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  height: 300px;
 }
+
+.message-form__author-text, .message-form__message-text {
+  padding: 10px 15px;
+  outline: none;
+  border-radius: 23px;
+  border-color: transparent;
+}
+
+.message-form__message-text {
+  padding-bottom: 60px;
+}
+
+.message-form__btn {
+  color: #fff;
+  background: #109fc5;
+  border: transparent;
+  display: inline-block;
+  padding: 10px 0px;
+  border-radius: 15px;
+  width: 30%;
+  align-self: center;
+}
+
+

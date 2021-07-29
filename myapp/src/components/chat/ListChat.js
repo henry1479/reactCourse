@@ -1,16 +1,15 @@
-import faker from 'faker';
+
 import { List,ListItem,ListItemText} from '@material-ui/core';
 import { NavLink} from 'react-router-dom'
 
-//realize list of chats 
+//реализует список чатов
 
-
-const ListChat = ({ chats, render }, props) => (
-        <List display="flex">
+const ListChat = ({ chats, render}) => (
+        <List style={{float:'left',width:'15%'}}>
             {render("chat-head")}
             { Object.keys(chats).map((id, i) => (
                     <ListItem key={i}>
-                        <NavLink to={`/chats/${id}`}>
+                        <NavLink to={`/chats/${id}`} style={{textDecoration: 'none',}} activeStyle={{color: 'red', textDecoration: 'none',}}>
                             <ListItemText>
                                 {chats[id].name}
                             </ListItemText>

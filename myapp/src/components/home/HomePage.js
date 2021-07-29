@@ -1,6 +1,9 @@
 import Front from './Front';
 
+
 const HomePage = () => {
+  
+    
     return(
         <Front/>
     )

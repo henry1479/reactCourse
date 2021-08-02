@@ -1,14 +1,15 @@
-import Form from './Form';
+import { Route } from 'react-router';
 import ListChat from './ListChat';
+import MessageList from './MessageList';
+
 // реализует страницу чата без MessageList
 
 
 const ChatPage =(props) => {
-
+    
 
     return(
         <>
-        <Form handleChange={props.sendMessage} />
         <ListChat chats={props.chats}  render={(className) =>(<h3 className={className}>Chat List</h3>)}/>
         </>
     )

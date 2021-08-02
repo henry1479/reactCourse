@@ -1,6 +1,7 @@
 import { useState, useRef, useEffect } from 'react'
 import { makeStyles,createStyles } from '@material-ui/core/styles';
 import { FormGroup, InputLabel, Input } from '@material-ui/core'
+import { Route, Switch, NavLink, Redirect } from 'react-router-dom';
 
 
 
@@ -69,8 +70,7 @@ function Form(props) {
    const cleanField = () => {
       inputText.current.value = '';
       inputText.current?.focus();
-      
-      
+       
    };
 
    // render elements from the framework 'material-ui'
@@ -79,8 +79,14 @@ function Form(props) {
       <FormGroup action="#" className={classes.form}>
          <InputLabel htmlFor="message">write your message</InputLabel>
          <Input inputRef={inputText} type="text" name="message" onChange ={handleChange} className={classes.input}  disableUnderline={true} autoFocus={true}/>
-         <Input type="submit" value="Send" className={classes.button} disableUnderline={true} onClick={(event) => {event.preventDefault(); props.handleChange(messageObject);cleanField()}} />
+         <Input type="submit" value="Send" className={classes.button} disableUnderline={true} onClick={(event) => {
+             event.preventDefault();
+             props.handleChange(messageObject);
+             cleanField();
+            }
+        } />
       </FormGroup>
+      
    )
 }
 

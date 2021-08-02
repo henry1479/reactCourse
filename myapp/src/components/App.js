@@ -1,6 +1,7 @@
 
 import '../App.css';
 import { Route, Switch, NavLink, Redirect } from 'react-router-dom';
+import { useCallback } from 'react';
 import ChatPage from './chat/ChatPage';
 import HomePage from './home/HomePage';
 import ProfilePage from './profile/ProfilePage';
@@ -23,28 +24,28 @@ import {
   },
  });
 
-// это чаты
- const initChat = {
-  id_1: {
-      name:'Dan',
-      messages: [{text:'Hello!', author: 'Dan'}]
-  },
-  id_2: {
-      name:'John',
-      messages: [{text:'Hello, Kostya!', author: 'John'}]
-  },
-  id_3: {
-      name:'Terry',
-      messages: [{text:'How are you, Kostya!', author: 'Terry'}]
-  },
-  id_4: {
-      name:'Kate',
-      messages: [{text:'What\'s app, Kostya!', author: 'Kate'}]
-  },
-}
- 
+//это чаты
+const initChat = {
+    id_1: {
+        name:'Dan',
+        messages: [{author: 'Dan', text:'Hello!'},{author: 'Dan', text:'Hello!'}]
+    },
+    id_2: {
+        name:'John',
+        messages: [{author: 'John', text:'Hello, Kostya!', }]
+    },
+    id_3: {
+        name:'Terry',
+        messages: [{author: 'Terry', text:'How are you, Kostya!', }]
+    },
+    id_4: {
+        name:'Kate',
+        messages: [ {author:'Kate', text:'What\'s app, Kostya!',}]
+    },
+  }
+   
 
-const myLogin = /^(Kostya)$/i;
+
 
 function App() {
   //это ссылки в ChatList
@@ -53,55 +54,11 @@ function App() {
     {path:"/profile", name:"Profile"},
     {path:"/chats", name: "Chat List"},
   ] 
-
-
-
-
-  //стейты чатов и id
-  const[chats, setChats] = useState(initChat);
-  const[chatId, setChatId] = useState('id_1');
-
-  //получаем id из MessageList
-  const getId = (id) => {
-    setChatId(id)
-  }
-
- 
- 
-  //отправлям сообщение в соотвествующий чат
-  //проблема только в том, что MessageList
-  //не рендерится заново после отправки сообщения
-  const sendMessage = (message) => {
-    let chat = chats[chatId];
-    chat.messages.push(message);
-    chats[chatId] = {
-       ...chat
-    };
-    setChats(chats);
-    // попытка перенаправить на ту ж страницу чата
-    return <Redirect to ={`/chats/:${chatId}`} />
-    
-  }
-
-
-  //ответ робота тоже работает плохо
-  useEffect(() => {
-    let lastMessage =  chats[chatId].messages[chats[chatId].messages.length - 1];
-    let messageArray =  chats[chatId].messages;
-    //if I send the meesage I will get message about ok!
-    if (lastMessage&&myLogin.test(lastMessage.author)) {
-      const responseMessage = { author: 'robot', text: `Dear ${lastMessage.author}, your message is sent!` }
-      messageArray.push(responseMessage);
-      chats[chatId].messages = messageArray;
-      const messageIntervalId = setTimeout(() => { setChats(chats) }, 3000);
-
-    }
-  }, [chats]);
-
   
+  
+ 
 
- 
- 
+
 
   return ( 
       
@@ -123,13 +80,12 @@ function App() {
                 <HomePage/>
             </Route>
             <Route path="/chats" >
-                <ChatPage sendMessage={sendMessage}
-                    chats={chats} 
-                    />
-                    {/* чаты работают только после помещения их сюда */}
                 <Route path="/chats/:Id" >
-                    <MessageList data={chats} handleChange={getId} />
+                    <MessageList  data={initChat} />
                 </Route>
+                <ChatPage 
+                    chats={initChat} 
+                    />
             </Route>
             <Route path="/profile">
                 <ProfilePage/>

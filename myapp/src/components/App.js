@@ -1,58 +1,100 @@
 
 import '../App.css';
-import MessageList from './MessageList';
-import Form from './Form';
+import { Route, Switch, NavLink, Redirect } from 'react-router-dom';
+import { useCallback } from 'react';
+import ChatPage from './chat/ChatPage';
+import HomePage from './home/HomePage';
+import ProfilePage from './profile/ProfilePage';
+import MessageList from './chat/MessageList';
 import { useState, useEffect } from 'react';
+import {
+  ThemeProvider,
+  useTheme,
+  createTheme,
+ } from "@material-ui/core/styles";
 
+
+
+ const theme = createTheme({
+  palette: {
+    primary: {
+      main: "#FF9800",
+    },
+  },
+ });
+
+//это чаты
+const initChat = {
+    id_1: {
+        name:'Dan',
+        messages: [{author: 'Dan', text:'Hello!'},{author: 'Dan', text:'Hello!'}]
+    },
+    id_2: {
+        name:'John',
+        messages: [{author: 'John', text:'Hello, Kostya!', }]
+    },
+    id_3: {
+        name:'Terry',
+        messages: [{author: 'Terry', text:'How are you, Kostya!', }]
+    },
+    id_4: {
+        name:'Kate',
+        messages: [ {author:'Kate', text:'What\'s app, Kostya!',}]
+    },
+  }
+   
 
 
 
 function App() {
-
-  // init state and function-setter
-  const [messages, setMessages] = useState([]);
-
-
-  //function handler onSubmit Form
-  //it get argument - object
-  const sendMessage = (object) => {
-    // array is the last value of the state
-    let array = messages;
-    // adding a copy of the object in the array
-    object = {...object}
-    array.push(object)
-    // set the state
-    setMessages([...array]);
-  }
-
-  //send message accepting getting message 
-  useEffect(() => {
-    //get a last object in the state
-    let obj = messages[messages.length - 1];
-    let array = messages;
-    //my login
-    const myLog = /^(Kostya)$/i;
-    // if the object do not exist to create new object 
-    obj = (obj === undefined || obj === null) ? { author: ' ', message: '' } : obj;
-    //if I send the meesage I will get message about ok!
-    if (myLog.test(obj.author)) {
-      const responseMessage = { author: 'robot', text: `Dear ${obj.author}, your message is sent!` }
-      array.push(responseMessage)
-      const messageIntervalId = setTimeout(() => { setMessages([...array]) }, 3000);
-
-    }
-  }, [messages])
+  //это ссылки в ChatList
+  const dataLink = [
+    {path:"/", name: "Home"},
+    {path:"/profile", name:"Profile"},
+    {path:"/chats", name: "Chat List"},
+  ] 
+  
+  
+ 
 
 
 
-  return (
+  return ( 
+      
     <div className="App">
-      <header className="App-header">
-        <MessageList data={messages} />
-        <Form handleChange={sendMessage} />
+      <header> 
+        <ul style={{listStyleType: 'none',}}>
+          {
+            dataLink.map((item,index) => (<li  key={index}> 
+                <NavLink exact style={{textDecoration: 'none',}} activeStyle={{color: 'red',}} to={item.path}>{item.name}</NavLink>
+            </li>)
+            )
+          }
+        </ul>
       </header>
+      
+      <main>
+        <Switch>
+            <Route path="/" exact>
+                <HomePage/>
+            </Route>
+            <Route path="/chats" >
+                <Route path="/chats/:Id" >
+                    <MessageList  data={initChat} />
+                </Route>
+                <ChatPage 
+                    chats={initChat} 
+                    />
+            </Route>
+            <Route path="/profile">
+                <ProfilePage/>
+            </Route>
+            {/* переход на несуществующую страницу */}
+            <Route render={()=><h1 style={{color: 'red', textAlign: 'center'}}>Not found 404</h1>}/>
+        </Switch>
+      </main>
+      
     </div>
   );
-}
 
-export default App;
+  

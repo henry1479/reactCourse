@@ -1,12 +1,10 @@
 
 import '../App.css';
-import { Route, Switch, NavLink, Redirect } from 'react-router-dom';
-import { useCallback } from 'react';
+import { Route, Switch, NavLink } from 'react-router-dom';
 import ChatPage from './chat/ChatPage';
 import HomePage from './home/HomePage';
 import ProfilePage from './profile/ProfilePage';
 import MessageList from './chat/MessageList';
-import { useState, useEffect } from 'react';
 import {
   ThemeProvider,
   useTheme,
@@ -79,12 +77,12 @@ function App() {
                 <HomePage/>
             </Route>
             <Route path="/chats" >
+                <ChatPage 
+                    chats={initChat} 
+                />
                 <Route path="/chats/:Id" >
                     <MessageList  data={initChat} />
                 </Route>
-                <ChatPage 
-                    chats={initChat} 
-                    />
             </Route>
             <Route path="/profile">
                 <ProfilePage/>
@@ -96,5 +94,5 @@ function App() {
       
     </div>
   );
-
-  
+}
+export default App

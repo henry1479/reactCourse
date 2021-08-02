@@ -1,5 +1,5 @@
 import { useParams,Route,Redirect } from 'react-router-dom';
-import { useEffect, useState, useCallback} from 'react';
+import { useEffect } from 'react';
 import { NoChat } from './NoChat';
 import Form from './Form'
 // component realizes paragraphs with sent messages
@@ -27,7 +27,6 @@ function MessageList(props) {
     // ответ робота
     useEffect(() => {
         let lastMessage =  chats[params.Id].messages[chats[params.Id].messages.length - 1];
-        let messageArray =  chats[params.Id].messages;
         //if I send the meesage I will get message about ok!
         if (lastMessage&&myLogin.test(lastMessage.author)) {
             const responseMessage = { author: 'robot', text: `Dear ${lastMessage.author}, your message is sent!` }
@@ -50,11 +49,11 @@ function MessageList(props) {
             <div className="messages-list">
                
                 {
-                    chats.then(chats[params.Id].messages.map((message, number) =>{return <p key={number.toString()} className="message"> Author: {message.author} Text: {message.text}</p>;}))
+                    chats[params.Id].messages.map((message, number) =>{return <p key={number.toString()} className="message"> Author: {message.author} Text: {message.text}</p>;})
                 }
                 
                 <Form handleChange={sendMessage}/>
-                
+        
                 <Route path="/nochat" exact>
                     <NoChat />
                 </Route>

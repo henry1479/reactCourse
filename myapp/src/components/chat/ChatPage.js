@@ -1,6 +1,6 @@
-import { Route } from 'react-router';
+
 import ListChat from './ListChat';
-import MessageList from './MessageList';
+
 
 // реализует страницу чата без MessageList
 

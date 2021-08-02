@@ -6,7 +6,6 @@ import ChatPage from './chat/ChatPage';
 import HomePage from './home/HomePage';
 import ProfilePage from './profile/ProfilePage';
 import MessageList from './chat/MessageList';
-
 import { useState, useEffect } from 'react';
 import {
   ThemeProvider,
@@ -99,6 +98,3 @@ function App() {
   );
 
   
-}
-
-export default App;

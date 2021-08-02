@@ -20,6 +20,7 @@
   color: white;
 }
 
+
 .App-main {
   display: flex;
 }
@@ -47,6 +48,27 @@
 
 }
 
+
+
+.App-link {
+  color: #c5e9f3;
+}
+
+
+
+.message {
+  color: #61dafb;
+  font-weight: 700;
+  font-size: 1.3em;
+  letter-spacing: 0.25em;
+
+}
+
+.message-red {
+  color: #e03c3c;
+  font-weight: 300;
+  font-size: 0.3em;
+  letter-spacing: 0.25em;
 
 
 /* Form */
@@ -79,4 +101,3 @@
   width: 30%;
   align-self: center;
 }
-

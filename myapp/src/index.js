@@ -10,9 +10,8 @@ import { rootReducer } from './components/store/rootReducer';
 
 
 const store = createStore(rootReducer,
-      window.__REDUX_DEVTOOLS_EXTENSION_&&
-        window.__REDUX_DEVTOOLS_EXTENSION_());
-
+    window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
+console.log(store)
 const app = <Provider store={store}>
     <BrowserRouter>
       <React.StrictMode>

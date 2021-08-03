@@ -55,8 +55,6 @@ function App() {
   
  
 
-
-
   return ( 
       
     <div className="App">
@@ -80,14 +78,10 @@ function App() {
                 <ChatPage 
                     chats={initChat} 
                 />
-                <Route path="/chats/:Id" >
-                    <MessageList  data={initChat} />
-                </Route>
             </Route>
             <Route path="/profile">
                 <ProfilePage/>
             </Route>
-            {/* переход на несуществующую страницу */}
             <Route render={()=><h1 style={{color: 'red', textAlign: 'center'}}>Not found 404</h1>}/>
         </Switch>
       </main>

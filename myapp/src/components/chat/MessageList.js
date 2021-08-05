@@ -1,48 +1,27 @@
 import { useParams,Route,Redirect } from 'react-router-dom';
-import { useEffect, useState, useCallback} from 'react';
+import { useSelector } from 'react-redux';
+import { getMessageList } from './selectors/messageSelector';
 import { NoChat } from './NoChat';
-import Form from './Form'
+import Form from './Form';
+import { useMemo } from 'react';
 // component realizes paragraphs with sent messages
 // and authors of messages
 
 
 
 
-const myLogin = /^(Kostya)$/i;
+
 
 function MessageList(props) {
-  
     const params = useParams();
-    const chats = props.data;
-    
+    const selectedMessages = useMemo(()=> getMessageList(params.Id),[params.Id]);
+    const  chatObj  = useSelector(selectedMessages);
 
-    //отправляем сообщение
-    const sendMessage = (message) => {
-        let chat = chats[params.Id];
-        chat.messages.push(message); 
-    }
-
-   
-    
-    // ответ робота
-    useEffect(() => {
-        let lastMessage =  chats[params.Id].messages[chats[params.Id].messages.length - 1];
-        let messageArray =  chats[params.Id].messages;
-        //if I send the meesage I will get message about ok!
-        if (lastMessage&&myLogin.test(lastMessage.author)) {
-            const responseMessage = { author: 'robot', text: `Dear ${lastMessage.author}, your message is sent!` }
-            chats[params.Id].messages.push(responseMessage);
-        }
-        
-    }, [chats[params.Id]]);
-
- 
-    // елси нет правильного чата 
-    //отправляем к компонету NoChat
-    if (!chats[params.Id]) {
+     // елси нет правильного чата 
+    // отправляем к компонету NoChat
+    if (!chatObj) {
         return <Redirect to="/nochat" />;
     }
-
   
     return (
         <div className="messages-wrapper">
@@ -50,11 +29,11 @@ function MessageList(props) {
             <div className="messages-list">
                
                 {
-                    chats.then(chats[params.Id].messages.map((message, number) =>{return <p key={number.toString()} className="message"> Author: {message.author} Text: {message.text}</p>;}))
+                   chatObj.messages.map((message, number) =>{return <p key={number.toString()} className="message"> Author: {message.author} Text: {message.text}</p>;})
                 }
-                
-                <Form handleChange={sendMessage}/>
-                
+            </div> 
+            <div>             
+                <Form id={params.Id} />
                 <Route path="/nochat" exact>
                     <NoChat />
                 </Route>

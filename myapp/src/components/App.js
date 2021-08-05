@@ -1,12 +1,9 @@
 
 import '../App.css';
-import { Route, Switch, NavLink, Redirect } from 'react-router-dom';
-import { useCallback } from 'react';
+import { Route, Switch, NavLink } from 'react-router-dom';
 import ChatPage from './chat/ChatPage';
 import HomePage from './home/HomePage';
 import ProfilePage from './profile/ProfilePage';
-import MessageList from './chat/MessageList';
-import { useState, useEffect } from 'react';
 import {
   ThemeProvider,
   useTheme,
@@ -18,31 +15,13 @@ import {
  const theme = createTheme({
   palette: {
     primary: {
-      main: "#FF9800",
+      main: "#e6e6fa",
+      second: "#c71585"
     },
   },
  });
 
-//это чаты
-const initChat = {
-    id_1: {
-        name:'Dan',
-        messages: [{author: 'Dan', text:'Hello!'},{author: 'Dan', text:'Hello!'}]
-    },
-    id_2: {
-        name:'John',
-        messages: [{author: 'John', text:'Hello, Kostya!', }]
-    },
-    id_3: {
-        name:'Terry',
-        messages: [{author: 'Terry', text:'How are you, Kostya!', }]
-    },
-    id_4: {
-        name:'Kate',
-        messages: [ {author:'Kate', text:'What\'s app, Kostya!',}]
-    },
-  }
-   
+
 
 
 
@@ -54,10 +33,6 @@ function App() {
     {path:"/chats", name: "Chat List"},
   ] 
   
-  
- 
-
-
 
   return ( 
       
@@ -72,29 +47,26 @@ function App() {
           }
         </ul>
       </header>
+      <ThemeProvider theme={theme}>
+        <main>
+          <Switch>
+              <Route path="/" exact>
+                  <HomePage/>
+              </Route>
+              <Route path="/chats" >
+                  <ChatPage 
+                  />
+              </Route>
+              <Route path="/profile">
+                  <ProfilePage/>
+              </Route>
+              <Route render={()=><h1 style={{color: 'red', textAlign: 'center'}}>Not found 404</h1>}/>
+          </Switch>
+        </main>
+      </ThemeProvider>
       
-      <main>
-        <Switch>
-            <Route path="/" exact>
-                <HomePage/>
-            </Route>
-            <Route path="/chats" >
-                <Route path="/chats/:Id" >
-                    <MessageList  data={initChat} />
-                </Route>
-                <ChatPage 
-                    chats={initChat} 
-                    />
-            </Route>
-            <Route path="/profile">
-                <ProfilePage/>
-            </Route>
-            {/* переход на несуществующую страницу */}
-            <Route render={()=><h1 style={{color: 'red', textAlign: 'center'}}>Not found 404</h1>}/>
-        </Switch>
-      </main>
       
     </div>
   );
-
-  
+}
+export default App

@@ -1,12 +1,10 @@
 
 import '../App.css';
 import { Route, Switch, NavLink, Redirect } from 'react-router-dom';
-import { useCallback } from 'react';
 import ChatPage from './chat/ChatPage';
 import HomePage from './home/HomePage';
 import ProfilePage from './profile/ProfilePage';
 import MessageList from './chat/MessageList';
-import { useState, useEffect } from 'react';
 import {
   ThemeProvider,
   useTheme,
@@ -27,7 +25,7 @@ import {
 const initChat = {
     id_1: {
         name:'Dan',
-        messages: [{author: 'Dan', text:'Hello!'},{author: 'Dan', text:'Hello!'}]
+        messages: [{author: 'Dan', text:'Hello!'}]
     },
     id_2: {
         name:'John',
@@ -80,7 +78,7 @@ function App() {
             </Route>
             <Route path="/chats" >
                 <Route path="/chats/:Id" >
-                    <MessageList  data={initChat} />
+                    <MessageList data={initChat} />
                 </Route>
                 <ChatPage 
                     chats={initChat} 
@@ -96,5 +94,7 @@ function App() {
       
     </div>
   );
+}
 
+export default App
   

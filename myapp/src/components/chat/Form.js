@@ -1,7 +1,7 @@
-import { useState, useRef, useEffect } from 'react'
+import { useState, useRef } from 'react'
 import { makeStyles,createStyles } from '@material-ui/core/styles';
-import { FormGroup, InputLabel, Input } from '@material-ui/core'
-import { Route, Switch, NavLink, Redirect } from 'react-router-dom';
+import { FormGroup, InputLabel, Input,Button} from '@material-ui/core'
+
 
 
 
@@ -44,11 +44,10 @@ const useStyles = makeStyles((theme)=> createStyles({
 
 // 
 // 
-function Form(props) {
+function Form(props, {chats}) {
    // object for new message
    const [messageObject, setMessageObject] = useState({});
    // refs for inputs
- 
    const inputText = useRef(null);
    //use styles for componenets
    const classes = useStyles();
@@ -63,7 +62,8 @@ function Form(props) {
       message.text = inputText.current.value;
       setMessageObject(message);
    }
-
+    
+  
 
    //clean input
    // make fokus on textField
@@ -76,16 +76,16 @@ function Form(props) {
    // render elements from the framework 'material-ui'
 
    return (
-      <FormGroup action="#" className={classes.form}>
+   <FormGroup className={classes.form}>
          <InputLabel htmlFor="message">write your message</InputLabel>
          <Input inputRef={inputText} type="text" name="message" onChange ={handleChange} className={classes.input}  disableUnderline={true} autoFocus={true}/>
-         <Input type="submit" value="Send" className={classes.button} disableUnderline={true} onClick={(event) => {
+         <Button type="button" value="Send" className={classes.button} disableUnderline={true} onClick={(event) => {
              event.preventDefault();
-             props.handleChange(messageObject);
+             props.sendMessage(messageObject);
              cleanField();
             }
-        } />
-      </FormGroup>
+        }></Button>
+   </FormGroup>
       
    )
 }

@@ -12,33 +12,44 @@ const myLogin = /^(Kostya)$/i;
 
 function MessageList(props) {
   
+    const [chats, setChats] = useState(props.data)
     const params = useParams();
-    const chats = props.data;
+
+    // отправляем сообщение
+    const sendMessage = useCallback(
+        (message) => {
+            let chat = chats[params.Id];
+            chat.messages.push(message); 
+            setChats({
+                ...chats,
+                [params.Id] : chat,
+                messages: chat.messages
+            })
+        }, [params.Id]
     
-
-    //отправляем сообщение
-    const sendMessage = (message) => {
-        let chat = chats[params.Id];
-        chat.messages.push(message); 
-    }
-
+    )
+   console.log('message', )
    
     
     // ответ робота
     useEffect(() => {
-        let lastMessage =  chats[params.Id].messages[chats[params.Id].messages.length - 1];
-        let messageArray =  chats[params.Id].messages;
-        //if I send the meesage I will get message about ok!
+        let chat = chats[params.Id];
+        let lastMessage =  chat.messages[chat.messages.length - 1];
         if (lastMessage&&myLogin.test(lastMessage.author)) {
             const responseMessage = { author: 'robot', text: `Dear ${lastMessage.author}, your message is sent!` }
-            chats[params.Id].messages.push(responseMessage);
+            chat.messages.push(responseMessage);
+            let timeoutId = setTimeout(()=>setChats({
+                ...chats,
+                [params.Id] : chat,
+                messages: chat.messages
+            }),2000)
         }
         
-    }, [chats[params.Id]]);
+    }, [chats]);
 
  
     // елси нет правильного чата 
-    //отправляем к компонету NoChat
+    // отправляем к компонету NoChat
     if (!chats[params.Id]) {
         return <Redirect to="/nochat" />;
     }
@@ -48,13 +59,11 @@ function MessageList(props) {
         <div className="messages-wrapper">
             <h3>Messages</h3>
             <div className="messages-list">
-               
                 {
-                    chats.then(chats[params.Id].messages.map((message, number) =>{return <p key={number.toString()} className="message"> Author: {message.author} Text: {message.text}</p>;}))
+                    chats[params.Id].messages.map((message, number) =>{return <p key={number.toString()} className="message"> Author: {message.author} Text: {message.text}</p>;})
                 }
                 
-                <Form handleChange={sendMessage}/>
-                
+                <Form sendMessage={sendMessage} />
                 <Route path="/nochat" exact>
                     <NoChat />
                 </Route>

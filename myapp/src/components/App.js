@@ -1,4 +1,3 @@
-
 import '../App.css';
 import { Route, Switch, NavLink } from 'react-router-dom';
 import ChatPage from './chat/ChatPage';
@@ -16,7 +15,8 @@ import {
   palette: {
     primary: {
       main: "#e6e6fa",
-      second: "#c71585"
+      second: "#c71585",
+      third: "#db7093n"
     },
   },
  });
@@ -26,12 +26,17 @@ import {
 
 
 function App() {
+
   //это ссылки в ChatList
   const dataLink = [
     {path:"/", name: "Home"},
     {path:"/profile", name:"Profile"},
     {path:"/chats", name: "Chat List"},
+
   ] 
+
+
+  
   
 
   return ( 

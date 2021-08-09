@@ -2,7 +2,7 @@ import { useState,useCallback,useRef } from 'react'
 import { makeStyles,createStyles } from '@material-ui/core/styles';
 import { useSelector,useDispatch } from 'react-redux';
 import { FormGroup, InputLabel, Input } from '@material-ui/core';
-import { setMessage } from './actions/addMessage'
+import { setMessage } from '../store/actions/addMessage'
 
 
 

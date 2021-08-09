@@ -1,11 +1,13 @@
 
 import ListChat from './ListChat';
+import { useParams } from 'react-router';
 
 
 // реализует страницу чата без MessageList
 
 
 const ChatPage =(props) => {
+    
     
 
     return(

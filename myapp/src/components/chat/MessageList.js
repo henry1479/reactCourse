@@ -1,6 +1,6 @@
 import { useParams,Route,Redirect } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-import { getMessageList } from './selectors/messageSelector';
+import { getMessageList } from '../store/selectors/messageSelector';
 import { NoChat } from './NoChat';
 import Form from './Form';
 import { useMemo } from 'react';

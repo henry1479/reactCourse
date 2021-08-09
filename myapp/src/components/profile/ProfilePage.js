@@ -1,11 +1,15 @@
 
-import { toggleData }  from './actions/toggleData';
+import { toggleData }  from '../store/actions/toggleData';
 import { connect } from 'react-redux';
 import { useSelector, useDispatch } from 'react-redux';
+import PresentationProfile from './PresentProfile'
+
+
 
 // компонент реализует страницу пользователя
 // получает и отправляет данные из стора с помощью 
 //хуков или функции connect
+// является контейнерным компонентом
 
 const ProfilePage= (props)=> {
     
@@ -20,14 +24,7 @@ const ProfilePage= (props)=> {
 
     return (
         <div>
-           <div style={(isShowData === false)?{display: 'none'}:{display: 'block'}}>
-                <p>{name}</p>
-                <p>{lastName}</p>
-           </div>
-            <label>
-                Show data
-                <input type="checkbox" name="dataShoeToggle" checked={props.profile.isShowData} value={props.profile.isShowData} onChange={props.toggleData}/>
-            </label>
+           <PresentationProfile isShowData={props.profile.isShowData} name={name} lastName={lastName} toggleData={props.toggleData}/> 
         </div>
         
     )

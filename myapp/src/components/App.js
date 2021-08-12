@@ -2,6 +2,7 @@ import '../App.css';
 import { Route, Switch, NavLink } from 'react-router-dom';
 import ChatPage from './chat/ChatPage';
 import HomePage from './home/HomePage';
+import PostsPage from './posts/PostsPage';
 import ProfilePage from './profile/ProfilePage';
 import {
   ThemeProvider,
@@ -32,6 +33,7 @@ function App() {
     {path:"/", name: "Home"},
     {path:"/profile", name:"Profile"},
     {path:"/chats", name: "Chat List"},
+    {path:"/posts", name: "Posts"},
 
   ] 
 
@@ -60,6 +62,10 @@ function App() {
               </Route>
               <Route path="/chats" >
                   <ChatPage 
+                  />
+              </Route>
+              <Route path="/posts" >
+                  <PostsPage
                   />
               </Route>
               <Route path="/profile">

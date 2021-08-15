@@ -1,0 +1,1 @@
+export const getMessageList = (chatId) => state => state.chatListReducer.chats[chatId]

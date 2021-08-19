@@ -1,10 +1,11 @@
 import { useState,useCallback,useRef } from 'react'
 import { makeStyles,createStyles } from '@material-ui/core/styles';
+
 import { useSelector,useDispatch } from 'react-redux';
 import { FormGroup, InputLabel, Input } from '@material-ui/core';
 import { setMessage } from '../store/actions/addMessage'
 
-
+// const db = firebase.database;
 
 // component realize the form for sending message 
 // contain 2 inputs and button with handler of events
@@ -71,8 +72,13 @@ function Form(props) {
    // из формы
    const sendMessage = useCallback(()=>
         dispatch(setMessage(messageObject,props.id)),
-        [dispatch,messageObject]
+        [dispatch, messageObject]
    )
+
+   
+
+  
+
 
 
    //clean input
@@ -90,7 +96,7 @@ function Form(props) {
          <Input inputRef={inputText} type="text" name="message" onChange ={handleChange} className={classes.input}  disableUnderline={true} autoFocus={true}/>
          <Input type="submit" value="Send" className={classes.button} disableUnderline={true} onClick={(event) => {
              event.preventDefault();
-             sendMessage();
+             props.onAddMessage(messageObject);
              cleanField();
             }
         } />

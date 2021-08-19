@@ -1,9 +1,11 @@
 import { useParams,Route,Redirect } from 'react-router-dom';
-import { useSelector } from 'react-redux';
-import { getMessageList } from '../store/selectors/messageSelector';
+import { useSelector, useDispatch } from 'react-redux';
+import { getMessageListFirebase } from '../store/selectors/selectorsFirebase';
+import { db } from '../../index.js';
 import { NoChat } from './NoChat';
 import Form from './Form';
-import { useMemo } from 'react';
+import { useState,useCallback,useEffect } from 'react';
+import { addMessageWithFirebase, initMessageTracking } from '../store/actions/addMessageFireBase'
 // component realizes paragraphs with sent messages
 // and authors of messages
 
@@ -12,16 +14,64 @@ import { useMemo } from 'react';
 
 
 
-function MessageList(props) {
-    const params = useParams();
-    const selectedMessages = useMemo(()=> getMessageList(params.Id),[params.Id]);
-    const  chatObj  = useSelector(selectedMessages);
+function MessageList() {
+    const { Id }  = useParams();
 
-     // елси нет правильного чата 
+    const messages  = useSelector(getMessageListFirebase);
+    // const [ messages, setMessages] = useState([]);
+    const dispatch = useDispatch();
+
+
+//     const onAddMessage = useCallback((message)=>{
+//         db()
+//         .ref("chats")
+//         .child(Id)
+//         .child('messages')
+//         .push(message);
+//    },
+//    [Id]
+//  );
+
+   
+
+
+    // получает и отрисовывает сообщения из базы данных
+    // useEffect(() => {
+    //     db().ref("chats").child(Id).child('messages').on("value", (snapshot) => {
+        
+    //       const newMessages = [];
+    
+    //       snapshot.forEach(entry => {
+    //         newMessages.push({id: entry.key, ...entry.val()});
+    //       });
+    //       setMessages(newMessages);
+    //     });
+    //   }, [Id]);
+
+
+
+      const onAddMessageFirebase = useCallback(
+        (message) => {
+          dispatch(
+            addMessageWithFirebase(Id, message)
+          );
+    
+        },
+        [Id]
+      );
+    
+      useEffect(() => {
+        dispatch(initMessageTracking(Id));
+      }, [Id]);
+    
+
+       // елси нет правильного чата 
     // отправляем к компонету NoChat
-    if (!chatObj) {
-        return <Redirect to="/nochat" />;
-    }
+    // if (Id !== id) {
+    //     return <Redirect to="/nochat" />;
+    // }
+
+     
   
     return (
         <div className="messages-wrapper">
@@ -29,11 +79,11 @@ function MessageList(props) {
             <div className="messages-list">
                
                 {
-                   chatObj.messages.map((message, number) =>{return <p key={number.toString()} className="message"> Author: {message.author} Text: {message.text}</p>;})
+                   messages.map((message) =>{return <p key={message.id} className="message"> Author: {message.author} Text: {message.text}</p>;})
                 }
             </div> 
             <div>             
-                <Form id={params.Id} />
+                <Form  onAddMessage={onAddMessageFirebase}/>
                 <Route path="/nochat" exact>
                     <NoChat />
                 </Route>

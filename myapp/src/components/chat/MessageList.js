@@ -1,85 +1,51 @@
-import { useParams,Route,Redirect } from 'react-router-dom';
+import { Route } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { getMessageListFirebase } from '../store/selectors/selectorsFirebase';
-import { db } from '../../index.js';
 import { NoChat } from './NoChat';
 import Form from './Form';
-import { useState,useCallback,useEffect } from 'react';
+import { useCallback,useEffect } from 'react';
 import { addMessageWithFirebase, initMessageTracking } from '../store/actions/addMessageFireBase'
-// component realizes paragraphs with sent messages
-// and authors of messages
 
 
-
-
-
-
-function MessageList() {
-    const { Id }  = useParams();
-
+// компонент реализует список сообщений 
+// для соответствующего чата
+function MessageList({id}) {
+    // константа для сообщений из редьюсера
     const messages  = useSelector(getMessageListFirebase);
-    // const [ messages, setMessages] = useState([]);
     const dispatch = useDispatch();
-
-
-//     const onAddMessage = useCallback((message)=>{
-//         db()
-//         .ref("chats")
-//         .child(Id)
-//         .child('messages')
-//         .push(message);
-//    },
-//    [Id]
-//  );
-
-   
-
-
-    // получает и отрисовывает сообщения из базы данных
-    // useEffect(() => {
-    //     db().ref("chats").child(Id).child('messages').on("value", (snapshot) => {
-        
-    //       const newMessages = [];
     
-    //       snapshot.forEach(entry => {
-    //         newMessages.push({id: entry.key, ...entry.val()});
-    //       });
-    //       setMessages(newMessages);
-    //     });
-    //   }, [Id]);
+   
+    
 
+    // отправляет сообщения в fb
 
-
-      const onAddMessageFirebase = useCallback(
+    const onAddMessageFirebase = useCallback(
         (message) => {
           dispatch(
-            addMessageWithFirebase(Id, message)
+            addMessageWithFirebase(id, message)
           );
     
         },
-        [Id]
+        [id,dispatch]
       );
-    
-      useEffect(() => {
-        dispatch(initMessageTracking(Id));
-      }, [Id]);
-    
 
-       // елси нет правильного чата 
-    // отправляем к компонету NoChat
-    // if (Id !== id) {
-    //     return <Redirect to="/nochat" />;
-    // }
+    // направляет сообщения в редьюсер через мидлвэр
+    
+    useEffect(() => {
+    dispatch(initMessageTracking(id));
+    }, [id]);
 
+   
      
   
     return (
         <div className="messages-wrapper">
             <h3>Messages</h3>
-            <div className="messages-list">
+            <div className="messages-list" >
                
                 {
-                   messages.map((message) =>{return <p key={message.id} className="message"> Author: {message.author} Text: {message.text}</p>;})
+                   messages?.map((message) =>{
+                       return <p key={message.id} className="message"><span>{message.author} </span>:<span> {message.text}</span> </p>;})
                 }
             </div> 
             <div>             

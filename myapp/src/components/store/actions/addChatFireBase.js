@@ -8,7 +8,6 @@ const getPayloadFromSnapshot = (snapshot) => {
     const chats = [];
     snapshot.forEach(entry => {
     chats.push({id: entry.key, ...entry.val()})
-    console.log(chats)
     });
 
    
@@ -23,13 +22,13 @@ const getPayloadFromSnapshot = (snapshot) => {
   };
   
   export const initChatTracking = () => (dispatch) => {
-    db().ref("chats").on("child_changed", (snapshot) => {
-      const payload = getPayloadFromSnapshot(snapshot);
-      dispatch({
-        type: CHANGE_CHATS,
-        payload,
-      });
-    });
+    // db().ref("chats").on("child_changed", (snapshot) => {
+    //   const payload = getPayloadFromSnapshot(snapshot);
+    //   dispatch({
+    //     type: CHANGE_CHATS,
+    //     payload,
+    //   });
+    // });
   
     db().ref("chats").on("value", (snapshot) => {
       const payload = getPayloadFromSnapshot(snapshot);
@@ -39,11 +38,11 @@ const getPayloadFromSnapshot = (snapshot) => {
       });
     });
   
-    db().ref("chats").on("child_added", (snapshot) => {
-      const payload = getPayloadFromSnapshot(snapshot);
-      dispatch({
-        type: CHANGE_CHATS,
-        payload,
-      });
-    });
+    // db().ref("chats").on("child_added", (snapshot) => {
+    //   const payload = getPayloadFromSnapshot(snapshot);
+    //   dispatch({
+    //     type: CHANGE_CHATS,
+    //     payload,
+    //   });
+    // });
   };

@@ -2,11 +2,12 @@ import { Link } from 'react-router-dom';
 
 export const SignUpPresent = (props) => {
     return (
-        <div>
-            <form onSubmit={props.submit}>
+        <div style={{marginTop:'20px'}}>
+            <form onSubmit={props.submit} className="login-form">
                 <p>Fill in the form below to register new account.</p>
                 <div>
                     <input
+                    className="login-form__input"
                     placeholder="Email"
                     name="email"
                     type="email"
@@ -16,6 +17,7 @@ export const SignUpPresent = (props) => {
                 </div>
                 <div>
                     <input
+                    className="login-form__input"
                     placeholder="Password"
                     name="password"
                     onChange={props.passChange}
@@ -25,7 +27,7 @@ export const SignUpPresent = (props) => {
                 </div>
                 <div>
                     {props.error && <p>{props.error}</p>}
-                    <button type="submit">Login</button>
+                    <button type="submit" className="login-form__button">Sign up</button>
                 </div>
                 <hr />
                 <p>

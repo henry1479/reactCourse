@@ -1,14 +1,12 @@
-import { useState,useCallback,useRef } from 'react'
+import { useState,useRef } from 'react';
 import { makeStyles,createStyles } from '@material-ui/core/styles';
-
-import { useSelector,useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { FormGroup, InputLabel, Input } from '@material-ui/core';
-import { setMessage } from '../store/actions/addMessage'
 
-// const db = firebase.database;
 
-// component realize the form for sending message 
-// contain 2 inputs and button with handler of events
+
+
+
 
 
 //   styles for components
@@ -44,8 +42,9 @@ const useStyles = makeStyles((theme)=> createStyles({
 })
 )
 
-// 
-// 
+// принимает функцию из MessageList через пропс
+// по оправки сообщений в firebase из инпута
+// для сообщений
 function Form(props) {
    // object for new message
    const [messageObject, setMessageObject] = useState({});
@@ -68,18 +67,12 @@ function Form(props) {
    }
 
 
-   // отправляет сообщения в чат непосредственно
-   // из формы
-   const sendMessage = useCallback(()=>
-        dispatch(setMessage(messageObject,props.id)),
-        [dispatch, messageObject]
-   )
-
-   
-
-  
-
-
+   // // отправляет сообщения в чат непосредственно
+   // // из формы
+   // const sendMessage = useCallback(()=>
+   //      dispatch(setMessage(messageObject,props.id)),
+   //      [dispatch, messageObject]
+   // )
 
    //clean input
    // make fokus on textField

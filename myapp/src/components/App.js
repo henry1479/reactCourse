@@ -59,9 +59,9 @@ function App() {
     })
   }, []);
 
-  const logOut = useCallback(()=>{ firebase.auth().signOut()},[]);
+  const logOut = useCallback(()=>{firebase.auth().signOut()},[]);
 
-  console.log(authed)
+  console.log(authed);
   
   
 
@@ -69,7 +69,7 @@ function App() {
       
     <div className="App">
       <header> 
-        <ul style={{listStyleType: 'none',}}>
+        <ul style={{listStyleType: 'none', paddingLeft: '0px'}}>
           {
             dataLink.map((item,index) => (<li  key={index}> 
                 <NavLink exact style={{textDecoration: 'none',}} activeStyle={{color: 'red',}} to={item.path}>{item.name}</NavLink>
@@ -77,7 +77,7 @@ function App() {
             )
           }
         </ul>
-        <button type="button" onClick={logOut}>Log out</button>
+        <button type="button" className="logout-button" onClick={logOut}>Log out</button>
       </header>
       <ThemeProvider theme={theme}>
         <main>

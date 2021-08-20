@@ -34,7 +34,7 @@ function botMiddleware(store){
         setTimeout (()=> store.dispatch(setMessage(robotResponce, action.id)), 2000);
       }
       const result = next(action);
-      console.log(store.getState());
+    //   console.log(store.getState());
       return result;
     }
   }
@@ -49,7 +49,7 @@ export const persistor = persistStore(store);
 
 firebase.initializeApp(config);
 export const db = firebase.database;
-console.log(config)
+
 
 
 const app = <Provider store={store}>

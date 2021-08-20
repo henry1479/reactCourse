@@ -3,8 +3,8 @@ import { Link } from 'react-router-dom';
 
 export const LoginPresent = (props) => {
     return (
-        <div>
-            <form onSubmit={props.submit}>
+        <div style={{marginTop:'20px'}}>
+            <form onSubmit={props.submit} className="login-form">
                 <p>Fill in the form below to log in to your account.</p>
                 <div>
                     <input
@@ -13,6 +13,7 @@ export const LoginPresent = (props) => {
                     type="email"
                     onChange={props.emailChange}
                     value={props.email}
+                    className="login-form__input"
                     />
                 </div>
                 <div>
@@ -22,15 +23,16 @@ export const LoginPresent = (props) => {
                     onChange={props.passChange}
                     value={props.password}
                     type="password"
+                    className="login-form__input"
                     />
                 </div>
                 <div>
                     {props.error && <p>{props.error}</p>}
-                    <button type="submit">Login</button>
+                    <button type="submit" className="login-form__button">Login</button>
                 </div>
-                <hr />
+                <hr style={{background:'rgb(79, 144, 243)'}}/>
                 <p>
-                    Do no have an account? <Link to="/signup">Sign In</Link>
+                    Do no have an account? <Link to="/signup">Sign up</Link>
                 </p>
             </form>
       </div>

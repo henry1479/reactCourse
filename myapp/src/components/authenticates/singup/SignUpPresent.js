@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 
 export const SignUpPresent = (props) => {
     return (
-        <div style={{marginTop:'20px'}}>
+        <div >
             <form onSubmit={props.submit} className="login-form">
                 <p>Fill in the form below to register new account.</p>
                 <div>

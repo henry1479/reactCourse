@@ -68,7 +68,7 @@ function App() {
   return ( 
       
     <div className="App">
-      <header> 
+      <header style={{marginBottom:'20px'}}> 
         <ul style={{listStyleType: 'none', paddingLeft: '0px'}}>
           {
             dataLink.map((item,index) => (<li  key={index}> 

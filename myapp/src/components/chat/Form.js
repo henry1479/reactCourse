@@ -1,18 +1,18 @@
-import { useState, useRef, useEffect } from 'react'
+import { useState,useRef } from 'react';
 import { makeStyles,createStyles } from '@material-ui/core/styles';
-import { FormGroup, InputLabel, Input } from '@material-ui/core'
-import { Route, Switch, NavLink, Redirect } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { FormGroup, InputLabel, Input } from '@material-ui/core';
 
 
 
-// component realize the form for sending message 
-// contain 2 inputs and button with handler of events
+
+
 
 
 //   styles for components
 const useStyles = makeStyles((theme)=> createStyles({
    form: {
-      width: '90%',
+      width: '40%',
       display: 'flex',
       flexDirection: 'column',
       justifyContent: 'space-evenly',
@@ -31,7 +31,7 @@ const useStyles = makeStyles((theme)=> createStyles({
 
    button: {
       color: '#fff',
-      background: '#109fc5',
+      background: theme.palette.primary.second,
       border: 'transparent',
       display: 'inline-block',
       padding: '10px 0px',
@@ -42,8 +42,9 @@ const useStyles = makeStyles((theme)=> createStyles({
 })
 )
 
-// 
-// 
+// принимает функцию из MessageList через пропс
+// по оправки сообщений в firebase из инпута
+// для сообщений
 function Form(props) {
    // object for new message
    const [messageObject, setMessageObject] = useState({});
@@ -52,25 +53,32 @@ function Form(props) {
    const inputText = useRef(null);
    //use styles for componenets
    const classes = useStyles();
+   const dispatch = useDispatch();
    
    
 
    //get value of inputs
    // make they propreties of objectMessage
    const handleChange = (event) => {
-      let message = {};
-      message.author = 'Kostya';
-      message.text = inputText.current.value;
-      setMessageObject(message);
+        let message = {};
+        message.author = 'Kostya';
+        message.text = inputText.current.value;
+        setMessageObject(message)
    }
 
+
+   // // отправляет сообщения в чат непосредственно
+   // // из формы
+   // const sendMessage = useCallback(()=>
+   //      dispatch(setMessage(messageObject,props.id)),
+   //      [dispatch, messageObject]
+   // )
 
    //clean input
    // make fokus on textField
    const cleanField = () => {
       inputText.current.value = '';
-      inputText.current?.focus();
-       
+      inputText.current?.focus(); 
    };
 
    // render elements from the framework 'material-ui'
@@ -81,7 +89,7 @@ function Form(props) {
          <Input inputRef={inputText} type="text" name="message" onChange ={handleChange} className={classes.input}  disableUnderline={true} autoFocus={true}/>
          <Input type="submit" value="Send" className={classes.button} disableUnderline={true} onClick={(event) => {
              event.preventDefault();
-             props.handleChange(messageObject);
+             props.onAddMessage(messageObject);
              cleanField();
             }
         } />

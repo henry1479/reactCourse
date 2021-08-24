@@ -1,3 +1,3 @@
 export const getMessageListFirebase = state => state.messagesReducer.messages
 
-export const getChatFirebase = state => state.messagesReducer.chats
+export const getChatFirebase = state => state.messagesReducer?.chats

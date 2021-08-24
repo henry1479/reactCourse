@@ -50,7 +50,6 @@ function App() {
 
   useEffect(() => {
     firebase.auth().onAuthStateChanged((user) => {
-        console.log(user)
       if (user) {
         setAuthed(true);
       } else {
@@ -61,7 +60,7 @@ function App() {
 
   const logOut = useCallback(()=>{firebase.auth().signOut()},[]);
 
-  console.log(authed);
+ 
   
   
 

@@ -14,7 +14,7 @@ import PresentationProfile from './PresentProfile'
 const ProfilePage= (props)=> {
     
     //получаем данные
-    const {name, lastName, isShowData} = useSelector((state)=>state.profileReducer.profile)
+    const {name, lastName, isShowData} = useSelector((state)=>state.profileReducer?.profile)
 
     const dispatch = useDispatch();
     //отправляем данные

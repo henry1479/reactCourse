@@ -1,3 +1,5 @@
+
+import React from 'react';
 import {  useDispatch,useSelector } from 'react-redux';
 import { db } from '../../index.js';
 import { useState, useCallback, useEffect } from 'react';
@@ -8,7 +10,7 @@ import MessageList from './MessageList.js';
 import { Route,useParams} from 'react-router-dom';
 import { getChatFirebase } from '../store/selectors/selectorsFirebase';
 
-
+const ChatsPure = React.memo(Chats);
 
 //реализует список чатов с формой для новых и списком сообщений
 // имеет собственную функцию по отправке новых чатов в fb
@@ -21,7 +23,7 @@ function ChatPage() {
     const [ chat, setChat] = useState('');
     let { Id } = useParams();
     const dispatch = useDispatch(); 
-    console.log(Id)
+    
 
     // получает данные из поля ввода и оправляет в стэйт
     const handleChange = useCallback((event)=>{  
@@ -61,7 +63,7 @@ function ChatPage() {
         
     return (
         <>
-            <Chats 
+            <ChatsPure 
             onAddChatFirebase={onAddChatFirebase}
             onRemoveChat={onRemoveChat}
             id={Id}

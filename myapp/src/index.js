@@ -61,7 +61,7 @@ const app = <Provider store={store}>
     </BrowserRouter>
 </Provider>
 
-ReactDOM.render(app, document.getElementById('root')
+ReactDOM.render(app, document.getElementById('root')||document.createElement('div')
 );
 
 // If you want to start measuring performance in your app, pass a function

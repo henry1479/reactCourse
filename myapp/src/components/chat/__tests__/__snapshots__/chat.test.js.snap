@@ -1,0 +1,339 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Chats сравнение снэпшотов 1`] = `
+Object {
+  "asFragment": [Function],
+  "baseElement": <body>
+    <div>
+      <div
+        style="float: left; width: 40%; border: 1px solid #ccc; background: rgb(221, 160, 221); margin-bottom: 5%; margin-left: 5%; border-radius: 15px;"
+      >
+        <ul
+          class="MuiList-root MuiList-padding"
+        >
+          <h3>
+            Chat List
+          </h3>
+          <li
+            class="MuiListItem-root MuiListItem-gutters"
+          >
+            <a
+              href="/chats/1234"
+              style="text-decoration: none;"
+            >
+              <div
+                class="MuiListItemText-root"
+                data-testid="chatBlock-name"
+              >
+                <span
+                  class="MuiTypography-root MuiListItemText-primary MuiTypography-body1 MuiTypography-displayBlock"
+                >
+                  Petya
+                </span>
+              </div>
+            </a>
+          </li>
+        </ul>
+        <form
+          action="#"
+          class="chatlist__form"
+        >
+          <label
+            for="name"
+          >
+            Enter the name of new friend
+          </label>
+          <input
+            class="chatlist__input"
+            name="friend-name"
+            type="text"
+            value=""
+          />
+          <input
+            class="chatlist__button"
+            type="button"
+            value="Add"
+          />
+          <input
+            class="chatlist__button"
+            type="button"
+            value="Remove"
+          />
+        </form>
+      </div>
+    </div>
+  </body>,
+  "container": <div>
+    <div
+      style="float: left; width: 40%; border: 1px solid #ccc; background: rgb(221, 160, 221); margin-bottom: 5%; margin-left: 5%; border-radius: 15px;"
+    >
+      <ul
+        class="MuiList-root MuiList-padding"
+      >
+        <h3>
+          Chat List
+        </h3>
+        <li
+          class="MuiListItem-root MuiListItem-gutters"
+        >
+          <a
+            href="/chats/1234"
+            style="text-decoration: none;"
+          >
+            <div
+              class="MuiListItemText-root"
+              data-testid="chatBlock-name"
+            >
+              <span
+                class="MuiTypography-root MuiListItemText-primary MuiTypography-body1 MuiTypography-displayBlock"
+              >
+                Petya
+              </span>
+            </div>
+          </a>
+        </li>
+      </ul>
+      <form
+        action="#"
+        class="chatlist__form"
+      >
+        <label
+          for="name"
+        >
+          Enter the name of new friend
+        </label>
+        <input
+          class="chatlist__input"
+          name="friend-name"
+          type="text"
+          value=""
+        />
+        <input
+          class="chatlist__button"
+          type="button"
+          value="Add"
+        />
+        <input
+          class="chatlist__button"
+          type="button"
+          value="Remove"
+        />
+      </form>
+    </div>
+  </div>,
+  "debug": [Function],
+  "findAllByAltText": [Function],
+  "findAllByDisplayValue": [Function],
+  "findAllByLabelText": [Function],
+  "findAllByPlaceholderText": [Function],
+  "findAllByRole": [Function],
+  "findAllByTestId": [Function],
+  "findAllByText": [Function],
+  "findAllByTitle": [Function],
+  "findByAltText": [Function],
+  "findByDisplayValue": [Function],
+  "findByLabelText": [Function],
+  "findByPlaceholderText": [Function],
+  "findByRole": [Function],
+  "findByTestId": [Function],
+  "findByText": [Function],
+  "findByTitle": [Function],
+  "getAllByAltText": [Function],
+  "getAllByDisplayValue": [Function],
+  "getAllByLabelText": [Function],
+  "getAllByPlaceholderText": [Function],
+  "getAllByRole": [Function],
+  "getAllByTestId": [Function],
+  "getAllByText": [Function],
+  "getAllByTitle": [Function],
+  "getByAltText": [Function],
+  "getByDisplayValue": [Function],
+  "getByLabelText": [Function],
+  "getByPlaceholderText": [Function],
+  "getByRole": [Function],
+  "getByTestId": [Function],
+  "getByText": [Function],
+  "getByTitle": [Function],
+  "queryAllByAltText": [Function],
+  "queryAllByDisplayValue": [Function],
+  "queryAllByLabelText": [Function],
+  "queryAllByPlaceholderText": [Function],
+  "queryAllByRole": [Function],
+  "queryAllByTestId": [Function],
+  "queryAllByText": [Function],
+  "queryAllByTitle": [Function],
+  "queryByAltText": [Function],
+  "queryByDisplayValue": [Function],
+  "queryByLabelText": [Function],
+  "queryByPlaceholderText": [Function],
+  "queryByRole": [Function],
+  "queryByTestId": [Function],
+  "queryByText": [Function],
+  "queryByTitle": [Function],
+  "rerender": [Function],
+  "unmount": [Function],
+}
+`;
+
+exports[`Chats сравнение снэпшотов компонента 1`] = `
+Object {
+  "asFragment": [Function],
+  "baseElement": <body>
+    <div>
+      <div
+        style="float: left; width: 40%; border: 1px solid #ccc; background: rgb(221, 160, 221); margin-bottom: 5%; margin-left: 5%; border-radius: 15px;"
+      >
+        <ul
+          class="MuiList-root MuiList-padding"
+        >
+          <h3>
+            Chat List
+          </h3>
+          <li
+            class="MuiListItem-root MuiListItem-gutters"
+          >
+            <a
+              href="/chats/1234"
+              style="text-decoration: none;"
+            >
+              <div
+                class="MuiListItemText-root"
+                data-testid="chatBlock-name"
+              />
+            </a>
+          </li>
+        </ul>
+        <form
+          action="#"
+          class="chatlist__form"
+        >
+          <label
+            for="name"
+          >
+            Enter the name of new friend
+          </label>
+          <input
+            class="chatlist__input"
+            name="friend-name"
+            type="text"
+            value=""
+          />
+          <input
+            class="chatlist__button"
+            type="button"
+            value="Add"
+          />
+          <input
+            class="chatlist__button"
+            type="button"
+            value="Remove"
+          />
+        </form>
+      </div>
+    </div>
+  </body>,
+  "container": <div>
+    <div
+      style="float: left; width: 40%; border: 1px solid #ccc; background: rgb(221, 160, 221); margin-bottom: 5%; margin-left: 5%; border-radius: 15px;"
+    >
+      <ul
+        class="MuiList-root MuiList-padding"
+      >
+        <h3>
+          Chat List
+        </h3>
+        <li
+          class="MuiListItem-root MuiListItem-gutters"
+        >
+          <a
+            href="/chats/1234"
+            style="text-decoration: none;"
+          >
+            <div
+              class="MuiListItemText-root"
+              data-testid="chatBlock-name"
+            />
+          </a>
+        </li>
+      </ul>
+      <form
+        action="#"
+        class="chatlist__form"
+      >
+        <label
+          for="name"
+        >
+          Enter the name of new friend
+        </label>
+        <input
+          class="chatlist__input"
+          name="friend-name"
+          type="text"
+          value=""
+        />
+        <input
+          class="chatlist__button"
+          type="button"
+          value="Add"
+        />
+        <input
+          class="chatlist__button"
+          type="button"
+          value="Remove"
+        />
+      </form>
+    </div>
+  </div>,
+  "debug": [Function],
+  "findAllByAltText": [Function],
+  "findAllByDisplayValue": [Function],
+  "findAllByLabelText": [Function],
+  "findAllByPlaceholderText": [Function],
+  "findAllByRole": [Function],
+  "findAllByTestId": [Function],
+  "findAllByText": [Function],
+  "findAllByTitle": [Function],
+  "findByAltText": [Function],
+  "findByDisplayValue": [Function],
+  "findByLabelText": [Function],
+  "findByPlaceholderText": [Function],
+  "findByRole": [Function],
+  "findByTestId": [Function],
+  "findByText": [Function],
+  "findByTitle": [Function],
+  "getAllByAltText": [Function],
+  "getAllByDisplayValue": [Function],
+  "getAllByLabelText": [Function],
+  "getAllByPlaceholderText": [Function],
+  "getAllByRole": [Function],
+  "getAllByTestId": [Function],
+  "getAllByText": [Function],
+  "getAllByTitle": [Function],
+  "getByAltText": [Function],
+  "getByDisplayValue": [Function],
+  "getByLabelText": [Function],
+  "getByPlaceholderText": [Function],
+  "getByRole": [Function],
+  "getByTestId": [Function],
+  "getByText": [Function],
+  "getByTitle": [Function],
+  "queryAllByAltText": [Function],
+  "queryAllByDisplayValue": [Function],
+  "queryAllByLabelText": [Function],
+  "queryAllByPlaceholderText": [Function],
+  "queryAllByRole": [Function],
+  "queryAllByTestId": [Function],
+  "queryAllByText": [Function],
+  "queryAllByTitle": [Function],
+  "queryByAltText": [Function],
+  "queryByDisplayValue": [Function],
+  "queryByLabelText": [Function],
+  "queryByPlaceholderText": [Function],
+  "queryByRole": [Function],
+  "queryByTestId": [Function],
+  "queryByText": [Function],
+  "queryByTitle": [Function],
+  "rerender": [Function],
+  "unmount": [Function],
+}
+`;

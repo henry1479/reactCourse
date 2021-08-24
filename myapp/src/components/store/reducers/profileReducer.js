@@ -9,7 +9,7 @@ export const initialState = {
 
 
  const profileReducer = (state = initialState,action)=> {
-    switch(action.type) {
+    switch(action?.type) {
         case 'TOGGLE_DATA':
             return {
                 ...state,

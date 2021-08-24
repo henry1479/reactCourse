@@ -175,4 +175,16 @@
     color: rgb(240, 240, 240);
 }
 
+.signup-form {
+    border: 3px solid rgb(30, 182, 182);
+}
+
+.signup-form__input {
+    border-color: rgb(43, 235, 235);
+}
+
+.signup-form__button {
+    background-color: rgb(30, 182, 182);
+}
+
 /* App */

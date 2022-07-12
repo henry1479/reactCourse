@@ -1,12 +1,10 @@
 
 import '../App.css';
-import { Route, Switch, NavLink, Redirect } from 'react-router-dom';
-import { useCallback } from 'react';
+import { Route, Switch, NavLink } from 'react-router-dom';
 import ChatPage from './chat/ChatPage';
 import HomePage from './home/HomePage';
 import ProfilePage from './profile/ProfilePage';
 import MessageList from './chat/MessageList';
-import { useState, useEffect } from 'react';
 import {
   ThemeProvider,
   useTheme,
@@ -57,8 +55,6 @@ function App() {
   
  
 
-
-
   return ( 
       
     <div className="App">
@@ -79,22 +75,18 @@ function App() {
                 <HomePage/>
             </Route>
             <Route path="/chats" >
-                <Route path="/chats/:Id" >
-                    <MessageList  data={initChat} />
-                </Route>
                 <ChatPage 
                     chats={initChat} 
-                    />
+                />
             </Route>
             <Route path="/profile">
                 <ProfilePage/>
             </Route>
-            {/* переход на несуществующую страницу */}
             <Route render={()=><h1 style={{color: 'red', textAlign: 'center'}}>Not found 404</h1>}/>
         </Switch>
       </main>
       
     </div>
   );
-
-  
+}
+export default App
